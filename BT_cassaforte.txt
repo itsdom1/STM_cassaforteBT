@@ -1,0 +1,62 @@
+Configuration	BT_cassaforte
+STM32CubeMX 	6.14.1
+Date	07/05/2025
+MCU	STM32F303VCTx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	PWM Generation CH1	TIM2_CH1	PA0
+UART4	Asynchronous	UART4_RX	PC11
+UART4	Asynchronous	UART4_TX	PC10
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+23	PA0	TIM2_CH1	
+35	PB0	GPIO_Output	
+36	PB1	GPIO_Output	
+78	PC10	UART4_TX	
+79	PC11	UART4_RX	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	PWM Generation CH1	TIM2_CH1	PA0
+UART4	Asynchronous	UART4_RX	PC11
+UART4	Asynchronous	UART4_TX	PC10
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+23	PA0	TIM2_CH1	
+35	PB0	GPIO_Output	
+36	PB1	GPIO_Output	
+78	PC10	UART4_TX	
+79	PC11	UART4_RX	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : BT_cassaforte
+Project Folder : /Users/domenicoformisano/STM32CubeIDE/workspace_1.18.1/BT_cassaforte
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_F3 V1.11.5
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

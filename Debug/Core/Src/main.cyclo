@@ -1,0 +1,8 @@
+../Core/Src/main.c:47:6:HAL_UART_RxCpltCallback	5
+../Core/Src/main.c:73:5:_write	1
+../Core/Src/main.c:80:5:main	6
+../Core/Src/main.c:165:6:SystemClock_Config	4
+../Core/Src/main.c:193:13:MX_TIM2_Init	3
+../Core/Src/main.c:214:13:MX_UART4_Init	2
+../Core/Src/main.c:229:13:MX_GPIO_Init	1
+../Core/Src/main.c:246:6:Error_Handler	1
