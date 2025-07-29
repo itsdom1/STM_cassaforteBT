@@ -1,55 +1,56 @@
-# 🔐 STM32 Safe Lock with Servo and UART
+# STM Cassaforte BT 🔐
 
-This project simulates a simple **electronic safe** using an STM32 microcontroller. It listens for a 4-digit code via UART. If the correct code `1234` is received, a **servo motor** rotates to simulate unlocking, and a green LED blinks. If the code is wrong, a red LED blinks and the servo remains locked.
+A simple secure box project using STM32 microcontroller, UART communication and PWM control for servo actuation.
 
-## Features
+## Overview
 
-- UART4 serial communication via interrupt (`HAL_UART_Receive_IT`)
-- PWM control of a servo motor using TIM2
-- Code validation and feedback through LEDs
-- Uses STM32 HAL libraries
+This project implements a basic safe ("cassaforte") mechanism:
+- The user sends a 4-digit combination via UART.
+- If the combination is correct, a servo motor toggles between 0° and 90°.
+- A green LED blinks on success, while a red LED blinks on failure.
 
-## Hardware Required
+## Hardware Requirements
 
-- STM32 development board (e.g. STM32F103C8T6)
+- STM32 board (e.g., STM32F1 series)
 - SG90 or compatible servo motor
-- 2 LEDs (connected to PB0 and PB1)
-- USB-UART adapter (if needed)
-- 5V power supply (for servo)
+- 2 LEDs (for PB0 and PB1)
+- UART to USB interface (e.g., USB-TTL adapter)
+- Power supply (e.g., USB or external 5V)
+- STM32CubeIDE
 
-## PWM Configuration
+## PWM Configuration (TIM2)
 
-The servo is driven using PWM with these settings:
+- **Prescaler**: 72-1 → 1 MHz timer clock
+- **Period**: 20000-1 → 20 ms PWM period
+- **Pulse values**:
+  - `1000` → 0° position (1 ms pulse width)
+  - `2000` → 90° position (2 ms pulse width)
 
-- **Prescaler**: 71 → 1 MHz timer clock
-- **Period**: 19999 → 20 ms PWM cycle (50 Hz)
-- **Pulse width**:
-  - `1000` → 1.0 ms → 0°
-  - `2000` → 2.0 ms → 90°
+These values correspond to the standard servo control PWM signals.
+
+## PWM Code Example
 
 ```c
-__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 1000); // 0°
 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 2000); // 90°
-How It Works
-The microcontroller waits for 4 characters over UART.
+__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 1000); // 0°
+```
 
-If the input is "1234", it toggles the servo angle between 0° and 90° and blinks the green LED (PB1).
+## How It Works
 
-If the code is incorrect, the red LED (PB0) blinks twice.
+The microcontroller waits for 4 characters over UART.  
+If the input is `"1234"`, it toggles the servo between 0° and 90° and blinks the green LED (PB1).  
+If the code is incorrect, the red LED (PB0) blinks instead.  
+UART reception is handled using HAL callbacks and interrupt-based processing.
 
-UART reception is handled using HAL callbacks and interrupt-based reception.
+## Getting Started
 
-Getting Started
-Clone the repository
+1. Clone this repository  
+2. Open the project in STM32CubeIDE  
+3. Flash the firmware to your STM32 board  
+4. Open a serial monitor (9600 baud, 8N1)  
+5. Type `1234` to unlock/lock the servo  
 
-Open the project in STM32CubeIDE
+## Author
 
-Flash it to your STM32 board
-
-Open a serial monitor (e.g. PuTTY, TeraTerm) at 9600 baud
-
-Type 1234 and observe servo + LED behavior
-
-Author
-Developed by itsdom1
-License: MIT
+Developed by [itsdom1](https://github.com/itsdom1)  
+License: [MIT](https://choosealicense.com/licenses/mit/)
